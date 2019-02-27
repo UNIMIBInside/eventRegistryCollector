@@ -1,10 +1,139 @@
 {
     "@context": {
-        "@base": "http://ew-shopp.eu/",
         "@version": 1.1,
+        "@base": "http://ew-shopp.eu/",
         "schema": "http://schema.org/",
-        "ews": "http://schema.org/",
-        "identifier": "@id"
+        "ews": "http://ew-shopp.eu/ontology/",
+        "ewsr": "http://ew-shopp.eu/data/rdf",
+        "lang": "@language",
+        "text": "@value",
+        "identifier": "@id",
+        "eventArray": {
+            "@id": "ews:eventArray",
+            "@type": "@id",
+            "@container": "@set",
+            "@context": {
+                "@base": "/rdf/event/"
+            }
+        },
+        "name": {
+            "@id": "schema:name",
+            "@language": "en"
+        },
+        "description": {
+            "@id": "schema:description",
+            "@language": "en"
+        },
+        "source": {
+            "@id": "ews:source",
+            "@language": "en"
+        },
+        "channelCode": {
+            "@id": "ews:channelCode",
+            "@language": "en"
+        },
+        "channelDescription": {
+            "@id": "ews:channelDescription",
+            "@language": "en"
+        },
+        "startDate": {
+            "@id": "schema:startDate",
+            "@type": "xsd:dateTime"
+        },
+        "endDate": {
+            "@id": "schema:endDate",
+            "@type": "xsd:dateTime"
+        },
+        "category": {
+            "@id": "schema:category",
+            "@type": "@id"
+        },
+        "product": {
+            "@id": "ews:product",
+            "@type": "@id"
+        },
+        "gtin13": {
+            "@id": "schema:gtin13"
+        },
+        "seller": {
+            "@id": "schema:seller",
+            "@type": "@id",
+            "@context": {
+                "@base": "/rdf/seller/"
+            }
+        },
+        "sku": {
+            "@id": "schema:sku"
+        },
+        "catalogId": {
+            "@id": "ews:catalogId"
+        },
+        "measure": {
+            "@id": "ews:measure"
+        },
+        "quantity": {
+            "@id": "ews:quantity",
+            "@type": "xsd:integer"
+        },
+        "quantityUnitId": {
+            "@id": "ews:quantityUnitId",
+            "@type": "@id",
+            "@context": {
+                "@base": "/rdf/quantityUnitId/"
+            }
+        },
+        "interestedAudience": {
+            "@id": "ews:interestedAudience",
+            "@type": "xsd:integer"
+        },
+        "attendingAudience": {
+            "@id": "ews:attendingAudience",
+            "@type": "xsd:integer"
+        },
+        "priceChanged": {
+            "@id": "ews:priceChanged",
+            "@type": "xsd:boolean"
+        },
+        "discount": {
+            "@id": "schema:discount",
+            "@type": "xsd:integer"
+        },
+        "location": {
+            "@id": "schema:location",
+            "@language": "@en"
+        },
+        "addressLocality": {
+            "@id": "schema:addressLocality",
+            "@language": "en"
+        },
+        "addressCountry": {
+            "@id": "schema:addressCountry",
+            "@language": "en"
+        },
+        "addressRegion": {
+            "@id": "schema:addressRegion",
+            "@language": "en"
+        },
+        "streetAddress": {
+            "@id": "schema:streetAddress",
+            "@language": "en"
+        },
+        "postalCode": {
+            "@id": "schema:postalCode",
+            "@language": "en"
+        },
+        "latitude": {
+            "@id": "schema:latitude",
+            "@type": "xsd:double"
+        },
+        "longitude": {
+            "@id": "schema:longitude",
+            "@type": "xsd:double"
+        },
+        "address": {
+            "@id": "schema:address",
+            "@type": "@id"
+        }
     },
     "events": [
         {
