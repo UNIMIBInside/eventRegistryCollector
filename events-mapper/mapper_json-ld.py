@@ -32,20 +32,7 @@ data_out['events'] = []
 
 for event in events_arr_in:
     curr_event = evnt.Event(event)
-    data_out['events'].append(
-        {
-            "@type": curr_event.get_type(),
-            "identifier": curr_event.get_identifier(),
-            "name": curr_event.get_name(),
-            "description": curr_event.get_description(),
-            "location": {
-                "@type": curr_event.get_location().get_type(),
-                "name": curr_event.get_location().get_name(),
-                "latitude": curr_event.get_location().get_latitude(),
-                "longitude": curr_event.get_location().get_longitude()
-            }
-        }
-    )
+    data_out['events'].append(curr_event.repr())
 
 # Dump data_out dictionary in a JSON output file
 with open('data_mapped.json','w') as outfile:

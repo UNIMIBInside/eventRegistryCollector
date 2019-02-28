@@ -22,6 +22,16 @@ class Place:
     
     def get_longitude(self):
         return self._longitude
-    
-    def get_address(self): ###
-        return self._address
+
+    #def get_address(self):
+    #    return self._address
+
+    def repr(self):
+        plc_repr = {
+            "@type": self.get_type(),
+            "name": self.get_name(),
+            "latitude": self.get_latitude(),
+            "longitude": self.get_longitude()
+        }
+
+        return plc_repr

@@ -100,7 +100,7 @@
         },
         "location": {
             "@id": "schema:location",
-            "@language": "@en"
+            "@language": "en"
         },
         "addressLocality": {
             "@id": "schema:addressLocality",

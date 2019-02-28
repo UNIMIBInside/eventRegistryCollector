@@ -106,7 +106,7 @@ DISCOUNT = {
 }
 LOCATION = {
     "@id": "schema:location",
-    "@language": "@en"
+    "@language": "en"
 }
 ADDRESS_LOCALITY = {
     "@id": "schema:addressLocality",

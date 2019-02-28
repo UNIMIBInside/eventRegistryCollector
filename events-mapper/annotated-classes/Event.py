@@ -33,3 +33,14 @@ class Event:
     
     def get_location(self):
         return self._location
+
+    def repr(self):
+        evnt_repr = {
+            "@type": self.get_type(),
+            "identifier": self.get_identifier(),
+            "name": self.get_name(),
+            "description": self.get_description(),
+            "location": self.get_location().repr()
+        }
+
+        return evnt_repr
