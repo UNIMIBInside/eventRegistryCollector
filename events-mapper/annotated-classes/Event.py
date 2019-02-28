@@ -17,7 +17,7 @@ class Event:
         else:
             self._description = None
         
-        self._location = plc.Place(er_event)
+        self._location = plc.Place(er_event["location"])
 
     def get_type(self):
         return self._type

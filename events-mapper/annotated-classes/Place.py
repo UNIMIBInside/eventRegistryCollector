@@ -3,12 +3,12 @@ import PostalAddress as pa
 TYPE = "ews:place"
 
 class Place:
-    def __init__(self,er_event):
+    def __init__(self,er_event_location):
         self._type = TYPE
-        self._name = er_event["location"]["label"]["eng"]
+        self._name = er_event_location["label"]["eng"]
         # self._description 
-        self._latitude = er_event["location"]["lat"]
-        self._longitude = er_event["location"]["long"]
+        self._latitude = er_event_location["lat"]
+        self._longitude = er_event_location["long"]
         #self._address = pa.PostalAddress()
     
     def get_type(self):

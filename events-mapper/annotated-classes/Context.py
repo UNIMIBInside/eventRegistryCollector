@@ -299,3 +299,47 @@ class Context:
     
     def get_address(self):
         return self._address
+    
+    def repr(self):
+        cntxt_repr = {
+            "@version": self.get_version(),
+            "@base": self.get_base(),
+            "schema": self.get_schema(),
+            "ews": self.get_ews(),
+            "ewsr": self.get_ewsr(),
+            "lang": self.get_lang(),
+            "text": self.get_text(),
+            "identifier": self.get_identifier(),
+            "eventArray": self.get_eventArray(),
+            "name": self.get_name(),
+            "description": self.get_description(),
+            "source": self.get_source(),
+            "channelCode": self.get_channelCode(),
+            "channelDescription": self.get_channelDescr(),
+            "startDate": self.get_startDate(),
+            "endDate": self.get_endDate(),
+            "category": self.get_category(),
+            "product": self.get_product(),
+            "gtin13": self.get_gtin13(),
+            "seller": self.get_seller(),
+            "sku": self.get_sku(),
+            "catalogId": self.get_catalogId(),
+            "measure": self.get_measure(),
+            "quantity": self.get_quantity(),
+            "quantityUnitId": self.get_quantityUnitId(),
+            "interestedAudience": self.get_interestedAudience(),
+            "attendingAudience": self.get_attendingAudience(),
+            "priceChanged": self.get_priceChanged(),
+            "discount": self.get_discount(),
+            "location": self.get_location(),
+            "addressLocality": self.get_addressLocality(),
+            "addressCountry": self.get_addressCountry(),
+            "addressRegion": self.get_addressRegion(),
+            "streetAddress": self.get_streetAddress(),
+            "postalCode": self.get_postalCode(),
+            "latitude": self.get_latitude(),
+            "longitude": self.get_longitude(),
+            "address": self.get_address()
+        }
+
+        return cntxt_repr
