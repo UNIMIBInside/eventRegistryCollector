@@ -1,14 +1,14 @@
 import argparse
-import sys
-sys.path.append('./components/')
-import er_events_collector as EEC
-import mapper_json_ld as MJLD
+#import sys
+#sys.path.append('./components/')
+#import er_events_collector as EEC
+#import mapper_json_ld as MJLD
+#import arangodb_connector as ARDB_CONN
 
 import os
 
 if __name__ == "__main__":
 
-    # TOP-LEVEL PARSER
     parser = argparse.ArgumentParser()
 
     # add argument to choose the mode: only events donwload, only mapping, both
@@ -22,3 +22,6 @@ if __name__ == "__main__":
     
     if (args.mode == 'm') | (args.mode == 'dm'):
         os.system("py components/mapper_json_ld.py")
+    
+    # save event mapped in JSON-LD in ArangoDB
+    os.system("py components/arangodb_connector.py"")
