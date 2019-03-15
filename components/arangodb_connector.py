@@ -2,8 +2,6 @@ from arango import ArangoClient
 from pprint import pprint
 import json
 
-db = None
-
 def estrablish_conn():
     client = ArangoClient(protocol='http', host='192.168.99.100', port=8529)
     sys_db = client.db('_system', username='root', password='')
