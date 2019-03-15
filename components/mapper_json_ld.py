@@ -40,7 +40,7 @@ def mapper_to_ld():
         json.dump(data_out, outfile, indent=4)
         outfile.write("\n")
     
-    print("[INFO] Mapping has been completed successfully!")
+    print("[INFO] Mapping has been completed")
 
 if __name__ == "__main__":
     print("---- Mapper to JSON-LD ---")

@@ -41,8 +41,12 @@ def process_evnts(db):
 
 if __name__ == "__main__":
     
+    print("---- ArangoDB connector ---")
+
     # init connection with ArangoDB instance
     db = estrablish_conn()
 
     # process JSON-LD containing events
     process_evnts(db)
+
+    print("[INFO] Events file loading on ArangoDB database has been completed")
