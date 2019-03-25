@@ -1,4 +1,4 @@
-import PostalAddress as pa
+from annotated_classes.PostalAddress import PostalAddress
 
 TYPE = "ews:place"
 

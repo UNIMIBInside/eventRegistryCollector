@@ -1,4 +1,4 @@
-import Place as plc
+from annotated_classes.Place import Place
 
 TYPE = "ews:Event"
 
@@ -17,7 +17,7 @@ class Event:
         else:
             self._description = None
         
-        self._location = plc.Place(er_event["location"])
+        self._location = Place(er_event["location"])
 
     def get_type(self):
         return self._type

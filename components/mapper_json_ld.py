@@ -1,12 +1,10 @@
 import json
-
-import sys
-sys.path.append('./components/annotated-classes/')
 import os
 
-import Event as evnt
-import Context as cntxt
-import Place as plc
+
+from annotated_classes.Event import Event
+from annotated_classes.Context import Context
+from annotated_classes.Place import Place
 
 def mapper_to_ld():
     # Data from input json file
@@ -20,7 +18,7 @@ def mapper_to_ld():
         data_in = json.load(f)
 
     # CONTEXT
-    context = cntxt.Context()
+    context = Context()
 
     # Bulding output json file
     data_out['@context'] = context.repr()
@@ -32,7 +30,7 @@ def mapper_to_ld():
     data_out['events'] = []
 
     for event in events_arr_in:
-        curr_event = evnt.Event(event)
+        curr_event = Event(event)
         data_out['events'].append(curr_event.repr())
 
     # Dump data_out dictionary in a JSON output file

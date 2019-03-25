@@ -45,7 +45,7 @@ def get_events_by_location(access_token):
 
     # set query to get events
     q = QueryEvents(
-        locationUri = er.getLocationUri(location)
+        locationUri = er.getLocationUri(filters["location"])
     )
 
     # keep just the first 2000 results
