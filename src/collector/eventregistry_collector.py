@@ -6,6 +6,8 @@ import re
 
 from .icollector import Collector
 
+from pprint import pprint
+
 class ERCollector(Collector):
 
     def __init__(self, access_token = None):
@@ -31,8 +33,9 @@ class ERCollector(Collector):
 
         # set query to get events
         q = QueryEvents(
-            locationUri = er.getLocationUri(filters["location"])
-            # TODO: add eventdate filter
+            locationUri = er.getLocationUri(filters["location"]),
+            dateStart = filters["startDate"],
+            dateEnd = filters["endDate"] 
         )
 
         # keep just the first 2000 results
@@ -61,7 +64,6 @@ class ERCollector(Collector):
 
         with open('data_elem.json','w') as outfile:
             json.dump(elem, outfile)
-
 
 '''
 def get_events_by_location(access_token):

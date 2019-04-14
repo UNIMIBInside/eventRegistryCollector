@@ -57,8 +57,7 @@ def get_avail_db_conn(cfg):
 def coll_service_selection(avail_coll_services):
     """
     Let the user choose the service to which perform the query
-    """
-        
+    """ 
     print("Please, select collector service (type related number key):")
     
     for coll_serv_key in avail_coll_services:
@@ -66,11 +65,13 @@ def coll_service_selection(avail_coll_services):
 
     coll_valid = False
     selected_collector = ""
-    
+
     while not coll_valid:
+        
+        print("Your selection:", end=" ")
         selected_collector = input()
         if selected_collector not in avail_coll_services:
-            print("Error: your choice does not correspond to any of the available services, retry")
+            print("[Error] Your choice does not correspond to any of the available services, retry")
         else:
             coll_valid = True
     
@@ -99,19 +100,36 @@ def collect_from_service(selected_collector):
     filters["location"] = input()
 
     # Filter event date
-    date_valid = False
+    date_start_valid = False
+    date_end_valid = False
 
-    while not date_valid:
-        print("Event date (yyyy-MM-dd):", end=" ")
-        filters["eventDate"] = input()
-    
+    # TODO: IMPORTANT! Add dateStart and dateEnd
+    while not (date_start_valid & date_end_valid):
+        print("Event start date (yyyy-MM-dd):", end=" ")
+        filters["startDate"] = input()
+       
         pattern_date = re.compile("(^$|^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$)")
-        match_date = pattern_date.match(filters["eventDate"])
+        match_start_date = pattern_date.match(filters["startDate"])
 
-        if match_date is not None:
-            date_valid = True
+        if match_start_date is not None:
+            date_start_valid = True
         else:
-            print("[ERROR] Date invalid or input date format is not recognized")
+            print("[ERROR] Input date invalid or format not recognized")
+
+
+        print("Event end date (yyyy-MM-dd):", end=" ")
+        filters["endDate"] = input()
+       
+        match_end_date = pattern_date.match(filters["endDate"])
+
+        if match_end_date is not None:
+            date_end_valid = True
+        else:
+            print("[ERROR] Input date invalid or format not recognized")
+
+    for filter in filters:
+        if filters[filter] == '':
+            filters[filter] = None
 
     collector.exec_query(filters)
 
