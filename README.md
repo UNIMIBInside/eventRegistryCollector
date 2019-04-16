@@ -1,4 +1,4 @@
-# EventRegistry collector
+# EventRegistry collector (README out of date, updating in progress)
 Collector written in Python to get events from EventRegistry, querying its API. Queries results are mapped basing on a custom JSON schema for EW-Shopp project.
 These two phases are implemented seperately in two different scripts. A centralized script determines the entry point for your command-line.
 Events defined after mapping phase are saved in a ArangoDB database. This define the third phase of the whole pipeline.
