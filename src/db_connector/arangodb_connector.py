@@ -27,9 +27,8 @@ class ArangoDBConnector(DBConnector):
         if not sys_db.has_database(db_name):
             sys_db.create_database(db_name)
 
-        # TODO: da sposare in save all logica della collection?
         # establish connection with db
-        db = client.db('events', username=self._user, password=self._password)
+        db = client.db(db_name, username=self._user, password=self._password)
 
         # create collection if not exists
         if not db.has_collection(collection_name):
@@ -39,15 +38,18 @@ class ArangoDBConnector(DBConnector):
 
     def save_all(self, db):
 
+        context = {}
         events = []
         coll = db.collection("events_coll")
 
         with open('./data_mapped.json') as f:
             data_in = json.load(f)
-            events = data_in["events"]
+            context = data_in["@context"]
+            events = data_in["eventArray"]
 
         for event in events:
             e = event
+            e["@context"] = context
             e["_id"] = e.pop("identifier")
             e["_id"] = coll.name + "/" + str(e["_id"])
 

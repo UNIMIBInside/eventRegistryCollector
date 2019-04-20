@@ -1,7 +1,6 @@
 import json
 import os
 
-
 from annotated_classes.Event import Event
 from annotated_classes.Context import Context
 from annotated_classes.Place import Place
@@ -27,11 +26,11 @@ def mapper_to_ld():
     events_arr_in = data_in["events"]["results"]
 
     # Building output json file
-    data_out['events'] = []
+    data_out['eventArray'] = []
 
     for event in events_arr_in:
         curr_event = Event(event)
-        data_out['events'].append(curr_event.repr())
+        data_out['eventArray'].append(curr_event.repr())
 
     # Dump data_out dictionary in a JSON output file
     with open('data_mapped.json','w') as outfile:

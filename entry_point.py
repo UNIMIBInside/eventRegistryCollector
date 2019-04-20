@@ -42,13 +42,20 @@ def get_avail_db_conn(cfg):
                 "section": section,
                 "port": cfg[section]["port"],
                 "user": cfg[section]["user"],
-                "password": cfg[section]["password"]
+                "password": cfg[section]["password"],
+                "db_name": cfg[section]["db_name"]
             }
 
             if cfg[section]["specificIPmode"] == 'yes':
                 conn_db[str(i)]["IP"] = cfg[section]["IP"]
             else:
                 conn_db[str(i)]["IP"] = cfg["db.connector"]["IP"]
+            
+            if "coll_name" in cfg[section]:
+                conn_db[str(i)]["coll_name"] = cfg[section]["coll_name"]
+            else:
+                conn_db[str(i)]["table_name"] = cfg[section]["table_name"]
+
             
             i += 1
     
@@ -147,9 +154,10 @@ def conn_db_selection(avail_db_conn):
     selected_conn_db = ""
     
     while not conn_db_valid:
+        print("Your selection:", end=" ")
         selected_conn_db = input()
         if selected_conn_db not in avail_db_conn:
-            print("Error: your choice does not correspond to any of the available connectors, retry")
+            print("[Error] Your choice does not correspond to any of the available connectors, retry")
         else:
             conn_db_valid = True
     
@@ -177,9 +185,17 @@ def save_events(selected_db_conn):
     conn_port = selected_db_conn["port"]    # extract port from ini file
     conn_user = selected_db_conn["user"]
     conn_password = selected_db_conn["password"]
+    conn_db_name = selected_db_conn["db_name"]
+    conn_table_coll_name = ""
 
+    if "coll_name" in selected_db_conn:
+        conn_table_coll_name = selected_db_conn["coll_name"]
+    else:
+        conn_table_coll_name = selected_db_conn["table_name"]
+
+    print(selected_db_conn["name"])
     conn_db = conn_db_cstr[selected_db_conn["name"]](conn_ip,conn_port,'http',conn_user,conn_password) # call the specified constructor
-    db = conn_db.connect('events','events_coll')
+    db = conn_db.connect(conn_db_name,conn_table_coll_name)
     conn_db.save_all(db)
 
 if __name__ == "__main__":
@@ -196,8 +212,6 @@ if __name__ == "__main__":
     cfg = configparser.ConfigParser()
     cfg.read('config/config.ini')
 
-    # read access token
-
     if (args.mode == 'd') | (args.mode == 'dm'):
         # init available collector services
         avail_coll_services = get_avail_coll_services(cfg)
@@ -209,7 +223,8 @@ if __name__ == "__main__":
         map_to_jsonld()
 
         # init available db connectors
-        avail_db_conn = get_avail_db_conn(cfg) # TODO: security issue, credentials saved in variables!
+        avail_db_conn = get_avail_db_conn(cfg)
 
         selected_db_conn = conn_db_selection(avail_db_conn)
+        pprint(selected_db_conn)
         save_events(selected_db_conn)
